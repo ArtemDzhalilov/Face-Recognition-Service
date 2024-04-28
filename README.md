@@ -44,7 +44,7 @@ First dowload [ms1m-returnaface](https://drive.google.com/file/d/1JgmzL9OLTqDAZE
 
 ## Todo
 
-1. Write desktop app.
+1. Finish desktop app.
    
 2. Make API documentation.
    
