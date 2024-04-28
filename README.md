@@ -33,7 +33,7 @@ python Train_model/test.py --model path/to/model/weights --target (name of targe
 
 ### Face Detection
 
-Models' performances on WiderFace Hard benchamrk can be found [here](https://github.com/Yusepp/YOLOv8-Face), [here](https://paperswithcode.com/paper/joint-face-detection-and-alignment-using) and [here](https://paperswithcode.com/paper/dsfd-dual-shot-face-detector). For model speed testing, download yolo  [weights](https://drive.google.com/drive/folders/1zTo0a2ZYPqVxgdMlQ0EmnW1apPRSrbA_?usp=sharing) (weights of other models were dowloaded with this repo) and put them into ./Detector_tests/Detector and run.
+Models' performances on WiderFace Hard benchamark can be found [here](https://github.com/Yusepp/YOLOv8-Face), [here](https://paperswithcode.com/paper/joint-face-detection-and-alignment-using) and [here](https://paperswithcode.com/paper/dsfd-dual-shot-face-detector). For model speed testing, download yolo  [weights](https://drive.google.com/drive/folders/1zTo0a2ZYPqVxgdMlQ0EmnW1apPRSrbA_?usp=sharing) (weights of other models were dowloaded with this repo) and put them into ./Detector_tests/Detector and run.
 
 ```bash
 python ./Detector_tests/test_speed.py
@@ -63,6 +63,8 @@ This project is licensed under the AGPL-3.0 License - see the LICENSE.md file fo
 [Dual Shot Face Detector](https://github.com/hukkelas/DSFD-Pytorch-Inference)
 
 [MTCNN](https://github.com/timesler/facenet-pytorch)
+
+[Ultra Light Fast Generic Face Detector](https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB)
 
 [Train and evaluation code](https://github.com/zhongyy/Face-Transformer)
 
