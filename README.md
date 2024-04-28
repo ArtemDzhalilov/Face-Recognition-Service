@@ -18,7 +18,8 @@ pip install requirements.txt
 
 ### Simple Run Service
 
-First download [factial face recognition model weights](https://drive.google.com/drive/folders/1UTwpAS8PI2iR0bthEl2T0vDGnrwSVlwG?usp=sharing) and [detection models weights](https://drive.google.com/drive/folders/1zTo0a2ZYPqVxgdMlQ0EmnW1apPRSrbA_?usp=sharing) and put them into ./ML Component/model_weights. Next you need to setup [Postgres Database in docker](https://hub.docker.com/_/postgres) and enter your database authentication data into ./Auth_Component/.env; ./Admin_Component/.env; ./Logs_Component/.env; ./ML_component/env.py. Then run ./Logs_Component/main.go, ./Auth_Component/main.go, ./Logs_Component/main.go; ./ML_Component/app.py and ./Front-end/index.py
+First download [factial face recognition model weights](https://drive.google.com/drive/folders/1UTwpAS8PI2iR0bthEl2T0vDGnrwSVlwG?usp=sharing) and [detection models weights](https://drive.google.com/drive/folders/1zTo0a2ZYPqVxgdMlQ0EmnW1apPRSrbA_?usp=sharing) and put them into ./ML Component/model_weights. Next you need to setup [Postgres Database in docker](https://hub.docker.com/_/postgres) and enter your database authentication data into ./Auth_Component/.env; ./Admin_Component/.env; ./Logs_Component/.env; ./ML_component/env.py. Then run ./Logs_Component/main.go, ./Auth_Component/main.go, ./Logs_Component/main.go; ./ML_Component/app.py and ./Front-end/index.py.
+
 Next go to your browser to url [localhost:4444](http://localhost:4444).
 
 ## Models Testing
