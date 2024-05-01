@@ -36,7 +36,7 @@ python Train_model/test.py --model path/to/model/weights --target (name of targe
 Models' performances on WiderFace Hard benchamark can be found [here](https://github.com/Yusepp/YOLOv8-Face), [here](https://paperswithcode.com/paper/joint-face-detection-and-alignment-using) and [here](https://paperswithcode.com/paper/dsfd-dual-shot-face-detector). For model speed testing, download yolo  [weights](https://drive.google.com/drive/folders/1zTo0a2ZYPqVxgdMlQ0EmnW1apPRSrbA_?usp=sharing) (weights of other models were downloaded with this repo) and put them into [Detector_tests/Detector](https://github.com/ArtemDzhalilov/Face-Recognition-Service/tree/main/Detector_tests/Detector) and run [Detectors_test/compare.py](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/Detector_tests/compare.py).
 
 ```bash
-python ./Detector_tests/test_speed.py
+python ./Detector_tests/compare.py
 ```
 ## Factial Model Training
 
