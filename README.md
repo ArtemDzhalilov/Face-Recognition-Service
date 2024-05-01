@@ -18,31 +18,31 @@ pip install requirements.txt
 
 ### Simple Run Service
 
-First download [factial face recognition model weights](https://drive.google.com/drive/folders/1UTwpAS8PI2iR0bthEl2T0vDGnrwSVlwG?usp=sharing) and [detection models weights](https://drive.google.com/drive/folders/1zTo0a2ZYPqVxgdMlQ0EmnW1apPRSrbA_?usp=sharing) and put them into [./ML Component/model_weights](https://github.com/ArtemDzhalilov/Face-Recognition-Service/tree/main/ML_Component/model_weights). Next you need to setup Postgres database [in docker](https://hub.docker.com/_/postgres) or [locally](https://www.postgresql.org/download/) and enter your database authentication data into:
+First download [factial face recognition model weights](https://drive.google.com/drive/folders/1UTwpAS8PI2iR0bthEl2T0vDGnrwSVlwG?usp=sharing) and [detection models weights](https://drive.google.com/drive/folders/1zTo0a2ZYPqVxgdMlQ0EmnW1apPRSrbA_?usp=sharing) and put them into [ML Component/model_weights](https://github.com/ArtemDzhalilov/Face-Recognition-Service/tree/main/ML_Component/model_weights). Next you need to setup Postgres database [in docker](https://hub.docker.com/_/postgres) or [locally](https://www.postgresql.org/download/) and enter your database authentication data into:
 
-[Auth_Component/.env](https://github.com/ArtemDzhalilov/Face-Recognition-Service/tree/main/Auth_Component/.env);
+1. [Auth_Component/.env](https://github.com/ArtemDzhalilov/Face-Recognition-Service/tree/main/Auth_Component/.env);
 
-[Admin_Component/.env](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/Admin_Component/.env);
+2. [Admin_Component/.env](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/Admin_Component/.env);
 
-[Logs_Component/.env](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/Log_Component/.env);
+3. [Logs_Component/.env](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/Log_Component/.env);
 
-[ML_component/env.py](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/ML_Component/env.py);
+4. [ML_component/env.py](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/ML_Component/env.py);
 
-[API Component/env.py](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/API%20Component/env.py).
+5. [API Component/env.py](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/API%20Component/env.py).
 
 Then run:
 
-[Admin_Component/main.go](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/Admin_Component/main.go);
+1. [Admin_Component/main.go](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/Admin_Component/main.go);
 
-[Auth_Component/main.go](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/Auth_Component/main.go);
+2. [Auth_Component/main.go](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/Auth_Component/main.go);
 
-[Logs_Component/main.go](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/Log_Component/log_server/main.go);
+3. [Logs_Component/main.go](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/Log_Component/log_server/main.go);
 
-[ML_Component/app.py](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/ML_Component/app.py);
+4. [ML_Component/app.py](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/ML_Component/app.py);
 
-[API Component/app.py](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/API%20Component/app.py);
+5. [API Component/app.py](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/API%20Component/app.py);
 
-[Front-end/index.py](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/Front_end/index.py); .
+6. [Front-end/index.py](https://github.com/ArtemDzhalilov/Face-Recognition-Service/blob/main/Front_end/index.py); .
 
 Next go to your browser to url [localhost:4444](http://localhost:4444).
 
