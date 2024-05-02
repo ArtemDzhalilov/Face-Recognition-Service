@@ -40,7 +40,7 @@ def auth_l():
     # Display the custom HTML with dark theme styles
     put_html("Please log in:<br>If you don't have an account, please register:")
     put_buttons(['Register'], onclick=lambda x: run_js(
-        'window.location.replace("http://192.168.88.24:2305/?app=auth_r");'))
+        'window.location.replace("http://localhost:2305/?app=auth_r");'))
 
     # Input fields for login
     login_group = input_group("Login", [
@@ -66,7 +66,7 @@ def auth_l():
         password = password1
         # Inform the user of a successful login
         put_text("Login successful!")
-        run_js('window.location.replace("http://192.168.88.24:2305/?app=app");')
+        run_js('window.location.replace("http://10.82.107.96:2305/?app=app");')
     else:
         # Inform the user that the login failed
         popup("Login failed", 'Please check your username and password and try again.')
@@ -81,7 +81,7 @@ def auth_r():
     put_text("If you already have an account, please log in:")
     put_buttons(["Login"],
                 onclick=[partial(pywebio.session.run_js,
-                                 'window.location.replace("http://192.168.88.24:2305/?app=auth_r");')])
+                                 'window.location.replace("http://10.82.107.96:2305/?app=auth_l");')])
     login1 = input("Enter your username:")
     password1 = input("Enter your password:", type=PASSWORD)
 
@@ -98,7 +98,7 @@ def auth_r():
         login = login1
         password = password1
         put_text("Registration successful!")
-        pywebio.session.run_js('window.location.replace("http://192.168.88.24:2305/?app=app");')
+        pywebio.session.run_js('window.location.replace("http://10.82.107.96:2305/?app=app");')
     else:
         put_text("Registration failed!")
     hold()
@@ -107,17 +107,21 @@ def fetch_data(owner):
     data = {
         'owner': owner
     }
+    data1 = {
+        'login': owner,
+        'password': password
+    }
     try:
 
         devices = requests.post('http://localhost:8080/api/get_devices/', json=data).json()
         faces = requests.post('http://localhost:8080/api/get_faces/', json=data).json()
         logs = requests.post('http://localhost:8090/api/get_logs/', json=data).json()
         model_types = requests.get('http://localhost:8070/check_useful_models/').json()
+        api_key = requests.get('http://localhost:8927/get_api_key', json=data1).json()
 
-        return devices, faces, logs, model_types
+        return devices, faces, logs, model_types, api_key
     except Exception as e:
-        print(e)
-        return {"data": []}, {"data": []}, {"data": []}, {"data": []}
+        return {"data": []}, {"data": []}, {"data": []}, {"data": []}, {"data": ''}
 def check_auto_login():
     if login == '' and password == '':
         return False
@@ -136,10 +140,13 @@ def check_auto_login():
 
 def app():
     if not check_auto_login():
-        pywebio.session.run_js('window.location.replace("http://192.168.88.24:2305/?app=auth_l");')
-        time.sleep(0.5)
+        pywebio.session.run_js('window.location.replace("http://10.82.107.96:2305/?app=auth_l");')
 
-    devices, faces, logs, models = fetch_data(login)
+    devices, faces, logs, models, api = fetch_data(login)
+
+    put_html("<h2>API key</h2>")
+    put_text(f"API key: {api['api_key']}")
+    put_buttons(['Create'], onclick=[partial(create_api_key)])
 
     put_html("<h2>Devices</h2>")
     put_buttons(['Create'], onclick=[partial(create_device, login)])
@@ -197,13 +204,22 @@ def app():
     model_type = select("Select model type", options=models['data'])
     put_buttons(["Send"], onclick=[partial(send_video, login, video_group['video']['content'], model_type)])
 
+def create_api_key():
+    json_data = {
+        'login': login,
+        'password': password
+    }
+    resp = requests.post('http://localhost:8927/create_api_key', json=json_data)
+    if resp.status_code == 200:
+        put_text("API key successfully created")
+    else:
+        put_text("Failed to create API key")
+
 def send_video(user_name, video, model_type):
     frames = iio.imread(video, index=None, format_hint=".mp4")
-    print(frames.shape)
     st = time.time()
     frames_new = np.array([cv2.resize(frames[frame], (frames.shape[1]//2, frames.shape[2]//2)) for frame in range(0, len(frames), 3)])
     serializes = orjson.dumps(frames_new, option=orjson.OPT_SERIALIZE_NUMPY)
-    print(time.time() - st)
     data = {
         'owner': user_name,
         'video': serializes,
@@ -291,7 +307,6 @@ def delete_face(face, user_name):
         'fullname': face["fullname"],
         "description": face["description"],
     }
-    print(json_data)
     if face_sure["name"] == face["fullname"]:
         response = requests.delete('http://localhost:8080/api/delete_face/', json=json_data)
         if response.status_code == 200:
@@ -330,7 +345,6 @@ def create_face(user_name):
 
 
     response = requests.post('http://localhost:8080/api/create_face/', json=json_data)
-    print(response.json())
     if response.status_code == 200:
         put_text('Face successfully created')
     else:
@@ -362,4 +376,4 @@ def clear_logs(user_name):
 
 if __name__ == "__main__":
 
-    start_server({"app": app, "auth_l": auth_l, "auth_r": auth_r}, port=2305, max_payload_size="40000M")
+    start_server({"app": app, "auth_l": auth_l, "auth_r": auth_r}, port=2305, max_payload_size="40000M", host='localhost')
