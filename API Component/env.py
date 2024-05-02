@@ -1,0 +1,5 @@
+HOST = 'localhost'
+PORT = '5432'
+LOGIN = 'postgres'
+PASSWORD = '927'
+DB_NAME = 'faces'
