@@ -140,7 +140,7 @@ Retrieves a name associated with a given image.
 
 ## Notes
 
-- Ensure that the internal service running at `http://localhost:8927**` is operational before making API calls.
+- Ensure that the internal service running at `http://localhost:8927` is operational before making API calls.
 - 
 - All endpoints require an `api_key` parameter for user authentication.
 - 
