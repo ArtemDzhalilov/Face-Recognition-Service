@@ -68,15 +68,93 @@ First dowload [ms1m-returnaface](https://drive.google.com/file/d/1JgmzL9OLTqDAZE
 
 ## API Usage
 
-### Todo
+
+### Overview
+
+This API provides endpoints for sending videos, getting embeddings, and names associated with images. The endpoints require an API key for authentication.
+
+### API Endpoints
+
+#### 1. Send Video
+
+##### POST `/api_send_video`
+
+Sends a video to a specified model for processing.
+
+**Request:**
+
+- `video` (string/binary): The video to be sent.
+  
+- `model_type` (string): The type of model to process the video.
+  
+- `api_key` (string): A valid API key for authentication.
+
+**Response:**
+
+- `200 OK`: The video was successfully sent and processed.
+  
+- `401 Unauthorized`: Incorrect API key.
+  
+- `500 Internal Server Error`: An error occurred in processing.
+  
+
+#### 2. Get Embedding
+
+##### POST `/api_get_embedding`
+
+Retrieves an embedding for a given image.
+
+**Request:**
+
+- `image` (string/binary): The image to be processed for embedding.
+  
+- `api_key` (string): A valid API key for authentication.
+
+**Response:**
+
+- `200 OK`: Successfully retrieved embedding.
+  
+- `401 Unauthorized`: Incorrect API key.
+  
+- `500 Internal Server Error`: An error occurred in retrieval.
+
+#### 3. Get Name
+
+##### POST `/api_get_name`
+
+Retrieves a name associated with a given image.
+
+**Request:**
+
+- `image` (string/binary): The image for which the name is requested.
+  
+- `api_key` (string): A valid API key for authentication.
+
+**Response:**
+
+- `200 OK`: Successfully retrieved name.
+  
+- `401 Unauthorized`: Incorrect API key.
+  
+- `500 Internal Server Error`: An error occurred in retrieval.
+
+## Notes
+
+- Ensure that the internal service running at `http://localhost:8927**` is operational before making API calls.
+- 
+- All endpoints require an `api_key` parameter for user authentication.
+- 
+- Status codes `401` and `500` indicate an authentication error or an internal server error, respectively.
 
 ## Todo
 
 1. Finish desktop app.
    
-2. Make API documentation.
+2. ~~Make API documentation.~~
    
 3. Create another identification model with linear asymptotics using mamba insted of attetion (more details about mamba usage in vision tasks can be found [here](https://arxiv.org/abs/2401.09417) and [here](https://arxiv.org/abs/2401.10166)).
+
+4. Improve security.
    
 ## License
 
